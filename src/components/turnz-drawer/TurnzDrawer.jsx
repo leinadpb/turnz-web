@@ -6,6 +6,7 @@ import { IconButton } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import PhoneIcon from '@material-ui/icons/Phone';
 import InputIcon from '@material-ui/icons/Input';
+import { withRouter } from 'react-router-dom';
 
 const TitleWrapper = styled.div`
   height: 120px;
@@ -55,6 +56,11 @@ class TurnzDrawer extends Component {
     super(props);
   }
 
+  navigateTo = (url) => {
+    this.props.handleClose();
+    this.props.history.push(url);
+  }
+
   render() {
     const { open } = this.props;
     return(
@@ -73,7 +79,7 @@ class TurnzDrawer extends Component {
             <span>Menu</span>
           </TitleWrapper>
           <MenuOptions>
-            <MenuOption>
+            <MenuOption onClick={() => this.navigateTo('/')}>
               <HomeIcon />
               <span>Inicio</span>
             </MenuOption>
@@ -92,4 +98,4 @@ class TurnzDrawer extends Component {
   }
 }
 
-export default TurnzDrawer;
+export default withRouter(TurnzDrawer);

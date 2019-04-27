@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import SearchBar from '../search-bar/SearchBar';
 import Card from '../card/Card';
-
+import {withRouter} from 'react-router-dom';
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;
@@ -102,7 +102,7 @@ class SearchPage extends Component {
   }
 
   gotToDetail = (id) => {
-    console.log(id);
+    this.props.history.push(`/detail/id=${id}`);
   }
 
   render() {
@@ -145,4 +145,4 @@ class SearchPage extends Component {
   }
 }
 
-export default SearchPage;
+export default withRouter(SearchPage);

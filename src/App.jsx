@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SearchPage from './components/search-page/SearchPage';
 import Navbar from './components/navbar/Navbar';
+import DetailPage from './components/detail-page/DetailPage';
 
 const RouterWrapper = styled.div`
   margin: 0 auto;
@@ -44,6 +45,7 @@ class App extends Component {
             <RouterWrapper>
               <Switch>
                 <Route exact path="/" render={ () => <SearchPage />  }></Route>
+                <Route exact path="/detail/:id" render={ () => <DetailPage />  }></Route>
               </Switch>
             </RouterWrapper>
          </>
