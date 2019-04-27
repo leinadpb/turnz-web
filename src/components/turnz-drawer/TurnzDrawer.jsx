@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import styled from 'styled-components';
+import CloseIcon from '@material-ui/icons/Close';
+import { IconButton } from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
+import PhoneIcon from '@material-ui/icons/Phone';
+import InputIcon from '@material-ui/icons/Input';
 
 const TitleWrapper = styled.div`
   height: 120px;
@@ -23,6 +28,28 @@ const MenuOptions = styled.div`
   align-items: flex-start;
 `;
 
+const DrawerWrapper = styled.div`
+  width: 100vw;
+  @media only screen and (min-width: 768px) {
+    min-width: 320px;
+    width: 100%;
+  }
+`;
+
+const CloseWrapper = styled.div`
+  position: absolute;
+  right: 8px;
+  top: 8px;
+`;
+
+const MenuOption = styled.div`
+  width: 100%;
+  min-height: auto;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  padding: 16px 16px 16px 16px;
+`;
+
 class TurnzDrawer extends Component {
   constructor(props) {
     super(props);
@@ -36,14 +63,30 @@ class TurnzDrawer extends Component {
         onClose={this.props.handleClose}
         onOpen={this.props.handleOpen}
       >
-        <div style={{ minWidth: '270px'  }}>
+        <DrawerWrapper>
+          <CloseWrapper>
+            <IconButton onClick={this.props.handleClose}>
+              <CloseIcon />
+            </IconButton>
+          </CloseWrapper>
           <TitleWrapper>
             <span>Menu</span>
           </TitleWrapper>
           <MenuOptions>
-
+            <MenuOption>
+              <HomeIcon />
+              <span>Inicio</span>
+            </MenuOption>
+            <MenuOption>
+              <PhoneIcon />
+              <span>Contactenos</span>
+            </MenuOption>
+            <MenuOption>
+              <InputIcon />
+              <span>Iniciar sesion</span>
+            </MenuOption>
           </MenuOptions>
-        </div>
+        </DrawerWrapper>
       </SwipeableDrawer>
     );
   }
