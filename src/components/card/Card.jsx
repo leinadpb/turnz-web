@@ -4,12 +4,15 @@ import styled from 'styled-components';
 const CardWrapper = styled.div`
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0px 0px 3px 2px #ccc;
+  box-shadow: 0px 2px 4px 2px #ccc;
   width: 100%;
   height: ${props => props.height};
   display: grid;
   grid-template-rows: ${props => props.gridRows};
   margin: 8px 0px;
+  @media only screen and (min-width: 768px) {
+    max-width: 480px;
+  }
 `;
 
 const Header = styled.div`

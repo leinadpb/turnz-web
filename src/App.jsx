@@ -1,30 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SearchPage from './components/search-page/SearchPage';
 import Navbar from './components/navbar/Navbar';
 
 const RouterWrapper = styled.div`
+  margin: 0 auto;
   margin-top: 60px;
-  background-color: #f7f7f7;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  @media only screen and (min-width: 768px) {
+    max-width: 2048px;
+  }
 `;
 
-function App() {
-  return (
-    <>
-      
-      <Router>
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      drawerOpen: false
+    }
+  }
+
+  handleDrawerClose = () => {
+    this.setState({
+      drawerOpen: false
+    });
+  }
+  handleDrawerOpen = () => {
+    this.setState({
+      drawerOpen: true
+    });
+  }
+
+  render() {
+    const { drawerOpen } = this.state;
+    return (
       <>
-          <Navbar />
-          <RouterWrapper>
-            <Switch>
-              <Route exact path="/" render={ () => <SearchPage />  }></Route>
-            </Switch>
-          </RouterWrapper>
-       </>
-      </Router>
-    </>
-  );
+        <Router>
+        <>
+            <Navbar openDrawer={drawerOpen} handleClose={this.handleDrawerClose} handleOpen={this.handleDrawerOpen} />
+            <RouterWrapper>
+              <Switch>
+                <Route exact path="/" render={ () => <SearchPage />  }></Route>
+              </Switch>
+            </RouterWrapper>
+         </>
+        </Router>
+      </>
+    );
+  }
 }
 
 export default App;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton } from '@material-ui/core';
+import TurnzDrawer from '../turnz-drawer/TurnzDrawer';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -15,10 +16,11 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0px;
   box-sizing: border-box;
+  z-index: 1000;
 `;
 
 const MenuWrapper = styled.div`
-  margin-left: 16px;
+  margin-left: 0px;
 `;
 
 const LogoWrapper = styled.div`
@@ -36,20 +38,24 @@ class Navbar extends Component {
   }
 
   render() {
+    const { openDrawer } = this.props;
     return (
-      <Wrapper>
-        <MenuWrapper>
-          <IconButton>
-            <MenuIcon />
-          </IconButton>
-        </MenuWrapper>
-        <LogoWrapper>
-          <span style={{ fontWeight: '600', fontSize: '1.25rem' }}>Turnz</span>
-        </LogoWrapper>
-        <SocialIcon>
+      <>
+        <Wrapper>
+          <MenuWrapper>
+            <IconButton onClick={this.props.handleOpen}>
+              <MenuIcon />
+            </IconButton>
+          </MenuWrapper>
+          <LogoWrapper>
+            <span style={{ fontWeight: '600', fontSize: '1.25rem', color: '#323d4b' }}>Turnz</span>
+          </LogoWrapper>
+          <SocialIcon>
 
-        </SocialIcon>
-      </Wrapper>
+          </SocialIcon>
+        </Wrapper>
+        <TurnzDrawer open={openDrawer} handleClose={this.props.handleClose} handleOpen={this.props.handleOpen} />
+      </>
     );
   }
 }
