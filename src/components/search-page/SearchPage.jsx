@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import SearchBar from '../search-bar/SearchBar';
 import Card from '../card/Card';
 import {withRouter} from 'react-router-dom';
+
 const Wrapper = styled.div`
-  height: 100%;
+  height: calc(100% - 58px);
   width: 100%;
   display: grid;
   grid-template-rows: 0.3fr 3fr;
@@ -47,7 +48,7 @@ const ContentWrapper = styled.div`
   align-items: center;
   padding: 16px;
   background-image: radial-gradient( circle farthest-corner at -4% -12.9%,  rgba(74,98,110,1) 0.3%, rgba(30,33,48,1) 90.2% );
-  overflow-y: auto;
+  overflow: auto;
 `;
 
 class SearchPage extends Component {

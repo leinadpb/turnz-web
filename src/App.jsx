@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SearchPage from './components/search-page/SearchPage';
 import Navbar from './components/navbar/Navbar';
 import DetailPage from './components/detail-page/DetailPage';
+import DetailEmployee from './components/detail-employee/DetailEmployee';
 
 const RouterWrapper = styled.div`
   margin: 0 auto;
@@ -46,6 +47,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" render={ () => <SearchPage />  }></Route>
                 <Route exact path="/detail/:id" render={ () => <DetailPage />  }></Route>
+                <Route exact path="/employee/:id" render={ () => <DetailEmployee /> } />
               </Switch>
             </RouterWrapper>
          </>

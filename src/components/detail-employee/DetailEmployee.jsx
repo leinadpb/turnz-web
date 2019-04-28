@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import { IconButton } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackIos';
-import { IconButton, CardContent } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
+import AddBtn from '../add-btn/AddBtn';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -29,7 +30,7 @@ const Header = styled.div`
   padding: 16px;
 `;
 
-const BusinessTitle = styled.div`
+const EmployeeName = styled.div`
   & span {
     font-weight: 600;
     font-size: 1.15rem;
@@ -122,107 +123,112 @@ const ScoreNumber = styled.div`
   }
 `;
 
-class DetailPage extends Component {
+class DetailEmployee extends Component { 
   constructor(props) {
     super(props);
     this.state = {
-      business: null,
-      businessId: -1,
-      employess: [
+      employee: null,
+      isLoading: true,
+      turns: [
         {
-          user_name: 'Daniel J. Pena',
-          score: 4.5,
-          user_photo: '/images/no-photo.png',
           turn_id: 1,
-          employee_id: 23
+          user_photo: '/images/no-photo.png',
+          user_name: 'Israel Berroa',
+          turn: 1
         },
         {
-          user_name: 'Jhon Doe',
-          score: 4.8,
-          user_photo: '/images/no-photo.png',
           turn_id: 2,
-          employee_id: 26
+          user_photo: '/images/no-photo.png',
+          user_name: 'Israel Berroa',
+          turn: 2
         },
         {
-          user_name: 'Jhon Doe',
-          score: 3.6,
-          user_photo: '/images/no-photo.png',
           turn_id: 3,
-          employee_id: 68
+          user_photo: '/images/no-photo.png',
+          user_name: 'Israel Berroa',
+          turn: 3
         },
         {
-          user_name: 'Jhon Doe',
-          score: 4.2,
-          user_photo: '/images/no-photo.png',
           turn_id: 4,
-          employee_id: 12
-        }
+          user_photo: '/images/no-photo.png',
+          user_name: 'Israel Berroa',
+          turn: 4
+        },
+        {
+          turn_id: 5,
+          user_photo: '/images/no-photo.png',
+          user_name: 'Israel Berroa',
+          turn: 5
+        },
+        {
+          turn_id: 6,
+          user_photo: '/images/no-photo.png',
+          user_name: 'Israel Berroa',
+          turn: 6
+        },
       ]
     }
   }
 
   componentDidMount = () => {
-    const id = this.props.match.params.id
-    this.setState({
-      businessId: id
-    })
+    // Simulate Call to API
+    setTimeout(() => {
+      this.setState({
+        isLoading: false
+      })
+    }, 1000);
   }
 
   goBack = () => {
     this.props.history.goBack();
   }
 
-  goToEmployee = (employeeId) => {
-    if(!!employeeId) {
-      this.props.history.push(`/employee/${employeeId}`)
-    }
-  }
-
   render() {
-    const { employess } = this.state;
+    const { turns } = this.state;
     return(
       <Wrapper>
         <ActionBar>
           <IconButton style={{ marginLeft: '16px' }} onClick={this.goBack}>
             <ArrowBackIcon />
           </IconButton>
-          <BusinessTitle>
-            <span>Lalin Style</span>
-          </BusinessTitle>
+          <EmployeeName>
+            <span>Daniel J. Pena</span>
+          </EmployeeName>
         </ActionBar>
         <Header>
           <ImageWrapper>
-            <img alt="Lalin Style" src="/images/sample-logo.jpg" />
+            <img alt="Lalin Style" src="/images/no-photo.png" />
             <InfoWrapper>
               <div>
-                4 Employees
+                4 People in turn
               </div>
               <div>
-                OPEN
+                3.5
               </div>
             </InfoWrapper>
           </ImageWrapper>
         </Header>
         <Content>
           {
-            employess.map((e) => (
-              <Card key={e.turn_id} onClick={() => this.goToEmployee(e.employee_id)}>
+            turns.map((t) => (
+              <Card key={t.turn_id}>
                 <CardImage>
-                  <img alt="Lalin Style" src={e.user_photo} />
+                  <img alt="Lalin Style" src={t.user_photo} />
                 </CardImage>
                 <CardInfo>
-                  {e.user_name}
+                  {t.user_name}
                 </CardInfo>
                 <ScoreNumber>
-                  <span>{e.score}</span>
+                  <span>{t.turn}</span>
                 </ScoreNumber>
               </Card>
             ))
           }
         </Content>
+        <AddBtn />
       </Wrapper>
     );
   }
 }
 
-export default withRouter(DetailPage);
+export default withRouter(DetailEmployee);

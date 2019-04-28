@@ -10,6 +10,9 @@ const CardWrapper = styled.div`
   display: grid;
   grid-template-rows: ${props => props.gridRows};
   margin: 8px 0px;
+  &:hover {
+    cursor: pointer;
+  }
   @media only screen and (min-width: 768px) {
     max-width: 480px;
   }
