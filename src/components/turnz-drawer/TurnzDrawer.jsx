@@ -83,11 +83,11 @@ class TurnzDrawer extends Component {
               <HomeIcon />
               <span>Inicio</span>
             </MenuOption>
-            <MenuOption>
+            <MenuOption onClick={() => this.navigateTo('/contact-us')}>
               <PhoneIcon />
               <span>Contactenos</span>
             </MenuOption>
-            <MenuOption>
+            <MenuOption onClick={() => this.navigateTo('/sign-in')}>
               <InputIcon />
               <span>Iniciar sesion</span>
             </MenuOption>
